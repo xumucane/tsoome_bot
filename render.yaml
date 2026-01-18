@@ -1,0 +1,34 @@
+# Exported from Render on 2026-01-18T19:12:51Z
+version: "1"
+services:
+- type: web
+  name: tsoome
+  runtime: node
+  repo: https://github.com/xumucane/tsoome_bot
+  plan: standard
+  envVars:
+  - key: N8N_USER_FOLDER
+    sync: false
+  - key: N8N_PROTOCOL
+    sync: false
+  - key: N8N_PORT
+    sync: false
+  - key: WEBHOOK_URL
+    sync: false
+  - key: WEBHOOK_TUNNEL_URL
+    sync: false
+  - key: N8N_HOST
+    sync: false
+  - key: N8N_EDITOR_BASE_URL
+    sync: false
+  - key: NODE_VERSION
+    sync: false
+  region: virginia
+  buildCommand: pnpm install --frozen-lockfile; pnpm run build
+  startCommand: pnpm run start
+  preDeployCommand: npm update -g n8n
+  disk:
+    name: disk
+    mountPath: /mnt/mydisk/n8nData/.n8n
+    sizeGB: 1
+  autoDeployTrigger: "off"
